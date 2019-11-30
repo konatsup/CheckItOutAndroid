@@ -57,7 +57,8 @@ class ControlFragment : Fragment() {
         val realm = Realm.getDefaultInstance()
         var soundList = realm.where(SoundData::class.java).findAll().toMutableList()
         viewModel.getSoundData().observe(viewLifecycleOwner, Observer {
-            soundList = it.toMutableList()
+            soundList.clear()
+            soundList.addAll(it.toMutableList())
             println("update realm data: $soundList")
             viewModel.changeSoundAll(soundList)
             adapter.notifyDataSetChanged()
