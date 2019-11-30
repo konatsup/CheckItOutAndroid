@@ -60,7 +60,7 @@ class ControlFragment : Fragment() {
             soundList = it.toMutableList()
             println("update realm data: $soundList")
             viewModel.changeSoundAll(soundList)
-            adapter.notifyDataSetChanged()
+            adapter.update(soundList)
         })
         adapter = SoundViewAdapter(soundList)
         adapter.setOnItemClickListener(object : SoundViewAdapter.onItemClickListener {
