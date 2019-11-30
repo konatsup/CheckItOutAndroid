@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.touyou.checkitoutandroid.R
 import dev.touyou.checkitoutandroid.entity.SoundData
 
-class SoundViewAdapter(private val soundList: List<SoundData>) :
+class SoundViewAdapter(private var soundList: List<SoundData>) :
     RecyclerView.Adapter<SoundViewAdapter.SoundViewHolder>() {
     private var listener: onItemClickListener? = null
 
@@ -41,6 +41,11 @@ class SoundViewAdapter(private val soundList: List<SoundData>) :
         holder.baseLayout.setOnClickListener {
             listener?.onClick(it, position)
         }
+    }
+
+    fun update(soundList:  List<SoundData>) {
+        this.soundList = soundList
+        notifyDataSetChanged()
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
